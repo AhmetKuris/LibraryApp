@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Web
+namespace Web.Entities
 {
     public class Author
     {
