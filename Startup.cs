@@ -6,6 +6,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Web.DataAccess;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace Web
 {
@@ -21,10 +23,18 @@ namespace Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddMvc()
+                .AddJsonOptions(o => {
+                    o.JsonSerializerOptions.ReferenceHandler=ReferenceHandler.Preserve;
+                });
+
             var connectionString = Configuration.GetConnectionString("LibraryDbConnection");
 
             services.AddDbContext<ApplicationContext>(opt =>
                 opt.UseSqlServer(connectionString));
+
+            services.AddTransient<BookDataAccess>();
+            services.AddTransient<AuthorDataAccess>();
 
             services.AddControllersWithViews();
 
