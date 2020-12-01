@@ -22,10 +22,9 @@ const AddAuthorPage = () =>
 {
     function handleSubmit(values)
     {
-        async function addAuthor(values)
-        {
+        async function addAuthor(values) {
 
-            const Request = Axios.CancelToken.source()
+            const Request = Axios.CancelToken.source();
 
             async function fetchResults()
             {
@@ -33,15 +32,15 @@ const AddAuthorPage = () =>
                 {
                     console.log(JSON.stringify(values))
                     const response = await Axios.post("library/author",
-                        values, {cancelToken: Request.token})
+                        values,
+                        { cancelToken: Request.token });
 
-                    console.log(response.data)
+                    console.log(response.data);
                     NotificationManager.success(response.data, 'Success!');
-                    console.log(response)
+                    console.log(response);
 
-                } catch (e)
-                {
-                    console.log("There was a problem or the request cancelled.")
+                } catch (e) {
+                    console.log("There was a problem or the request cancelled.");
                     console.log(e.response);
                     NotificationManager.error(e.response.data, 'Error!');
                     console.log(e.message);
@@ -53,9 +52,8 @@ const AddAuthorPage = () =>
         }
 
         addAuthor(values)
-        console.log(JSON.stringify(values))
+        console.log(JSON.stringify(values));
     }
-
 
     const values = {
         firstName: '',
