@@ -13,22 +13,32 @@ namespace Web.DataAccess
             _context = context;
         }
 
-        public IList<Author>  GetAuthors()
+        public IEnumerable<Author>  GetAuthors()
         {
-          return  _context.Authors.ToList();
+          return  _context.Authors.AsEnumerable();
+        }
+
+        public IQueryable<Author> Get()
+        {
+          return  _context.Authors.AsQueryable();
         }
 
         public void AddAuthor(Author author)
         {
              _context.Authors.Add(author);
+             _context.SaveChanges();
+
         }
         public void UpdateAuthor(Author author)
         {
              _context.Authors.Update(author);
+             _context.SaveChanges();
+
         }
         public void DeleteAuthor(Author author)
         {
              _context.Authors.Remove(author);
+             _context.SaveChanges();
         }
     }
 }

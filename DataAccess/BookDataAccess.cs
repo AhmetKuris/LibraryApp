@@ -22,14 +22,19 @@ namespace Web.DataAccess
         public void AddBook(Book book)
         {
             _context.Books.Add(book);
+            _context.SaveChanges();
         }
         public void UpdateBook(Book book)
         {
             _context.Books.Update(book);
+            _context.SaveChanges();
+
         }
         public void DeleteBook(Book book)
         {
             _context.Books.Remove(book);
+            _context.SaveChanges();
+
         }
     }
 }

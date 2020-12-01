@@ -6,17 +6,12 @@ using System.Threading.Tasks;
 
 namespace Web.DTOs
 {
-    public class BookDto
+    public class AuthorDto
     {
+        [Required]
+        public string FirstName { get; set; }
 
         [Required]
-        public string Title { get; set; }
-
-        [Required]
-        public int Page { get; set; }
-
-        [Required]
-        public string Author{ get; set; }
-
+        public string LastName { get; set; }
     }
 }

@@ -20,7 +20,6 @@ export class FetchData extends Component {
             <th>Id</th>
             <th>Title</th>
             <th>Page</th>
-            <th>Publish Date</th>
             <th>Author Id</th>
             <th>Author Full Name</th>
           </tr>
@@ -31,7 +30,6 @@ export class FetchData extends Component {
                   <td>{book.id}</td>
                   <td>{book.title}</td>
                   <td>{book.page}</td>
-                  <td>{book.publishDate}</td>
                   <td>{book.author.id}</td>
                   <td>{book.author.fullName}</td>
             </tr>

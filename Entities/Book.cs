@@ -19,7 +19,7 @@ namespace Web.Entities
 
         [Required]
         public DateTime PublishDate { get; set; }
-        
+
         public Author Author { get; set; }
     }
 }

@@ -1,71 +1,59 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Form from 'react-bootstrap/Form'
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
-import DatePicker from './DatePicker'
 import "react-datepicker/dist/react-datepicker.css";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import { faUserCircle} from "@fortawesome/free-solid-svg-icons";
 
 function AddBookForm(props)
 {
 
     const {
         values: {
-            title,
-            page,
-            author,
+            firstName,
+            lastName
         },
         errors,
         touched,
         handleChange,
         handleSubmit,
-        handleBlur,
-        setFieldValue,
-        classes
     } = props;
 
     return (
         <Form noValidate onSubmit={handleSubmit}>
+            <Form.Row className="justify-content-center mb-3">
+            <FontAwesomeIcon
+                style={{fontSize: '400%'}}
+                icon={faUserCircle} size="lg"
+                />
+        </Form.Row>
             <Form.Row className="justify-content-center">
-                <Form.Group as={Col} md="3" controlId="validationFormik01">
-                    <Form.Label>Title</Form.Label>
+                <Form.Group as={Col} md="4" controlId="validationFormik01">
+                    <Form.Label>First Name</Form.Label>
                     <Form.Control
                         type="text"
-                        name="title"
-                        value={title}
+                        name="firstName"
+                        value={firstName}
                         onChange={handleChange}
-                        isInvalid={touched.title && !!errors.title}
+                        isInvalid={touched.firstName && !!errors.firstName}
                     />
-                    <Form.Control.Feedback type="invalid">{errors.title}</Form.Control.Feedback>
+                    <Form.Control.Feedback type="invalid">{errors.firstName}</Form.Control.Feedback>
                 </Form.Group>
-                <Form.Group as={Col} md="3" controlId="validationFormik02">
-                    <Form.Label>Page</Form.Label>
+                <Form.Group as={Col} md="4" controlId="validationFormik02">
+                    <Form.Label>Last Name</Form.Label>
                     <Form.Control
                         type="text"
-                        name="page"
-                        value={page}
+                        name="lastName"
+                        value={lastName}
                         onChange={handleChange}
-                        isInvalid={touched.page && !!errors.page}
+                        isInvalid={touched.lastName && !!errors.lastName}
                     />
-                    <Form.Control.Feedback type="invalid">{errors.page}</Form.Control.Feedback>
-                </Form.Group>
-                <Form.Group as={Col} md="3" controlId="validationFormikUsername">
-                    <Form.Label>Author</Form.Label>
-                    <Form.Control
-                        type="text"
-                        id="author"
-                        as="select"
-                        value={author}
-                        onChange={handleChange}
-                        isInvalid={touched.author && !!errors.author}
-                        defaultValue="Choose...">
-                        <option>Choose...</option>
-                        <option>...</option>
-                    </Form.Control>
-                    <Form.Control.Feedback type="invalid">{errors.author}</Form.Control.Feedback>
+                    <Form.Control.Feedback type="invalid">{errors.lastName}</Form.Control.Feedback>
                 </Form.Group>
             </Form.Row >
             <Form.Row className="justify-content-center">
-                <Button type="submit">Submit form</Button>
+                <Button type="submit">Add Author</Button>
             </Form.Row>
         </Form>
 

@@ -1,10 +1,12 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Formik} from 'formik';
 import * as yup from 'yup';
-import Axios from 'axios';
-import AddBookForm from "./AddBookForm";
 import Container from "react-bootstrap/Container";
 import {Col, Row} from "react-bootstrap";
+import AddAuthorForm from './AddAuthorForm'
+import Axios from "axios";
+import {NotificationManager, NotificationContainer} from "react-notifications";
+import 'react-notifications/lib/notifications.css';
 
 
 const validationSchema = yup.object({
@@ -18,29 +20,42 @@ const validationSchema = yup.object({
 
 const AddAuthorPage = () =>
 {
-
     function handleSubmit(values)
     {
-
-        const Request = Axios.CancelToken.source();
-
-        async function fetchResults()
+        async function addAuthor(values)
         {
-            try
+
+            const Request = Axios.CancelToken.source()
+
+            async function fetchResults()
             {
-                const response = await Axios.post('/api/user',
-                    values, {cancelToken: Request.token});
-                console.log(response.data)
-            } catch (e)
-            {
-                console.log('There was a problem or the request cancelled.');
-                console.log(e.response);
+                try
+                {
+                    console.log(JSON.stringify(values))
+                    const response = await Axios.post("library/author",
+                        values, {cancelToken: Request.token})
+
+                    console.log(response.data)
+                    NotificationManager.success(response.data, 'Success!');
+                    console.log(response)
+
+                } catch (e)
+                {
+                    console.log("There was a problem or the request cancelled.")
+                    console.log(e.response);
+                    NotificationManager.error(e.response.data, 'Error!');
+                    console.log(e.message);
+                }
             }
+
+            fetchResults();
+            return () => Request.cancel();
         }
 
-        fetchResults();
-        return () => Request.cancel();
+        addAuthor(values)
+        console.log(JSON.stringify(values))
     }
+
 
     const values = {
         firstName: '',
@@ -52,14 +67,14 @@ const AddAuthorPage = () =>
             <Row>
                 <Col className="justify-content-center">
                     <Formik
-                        render={props => <AddBookForm{...props} />}
+                        render={props => <AddAuthorForm{...props} />}
                         initialValues={values}
                         validationSchema={validationSchema}
                         onSubmit={handleSubmit}
                     />
                 </Col>
             </Row>
-
+            <NotificationContainer/>
         </Container>
     );
 };

@@ -8,6 +8,7 @@ using Microsoft.Extensions.Hosting;
 using Web.DataAccess;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Newtonsoft.Json;
 
 namespace Web
 {
@@ -23,10 +24,8 @@ namespace Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc()
-                .AddJsonOptions(o => {
-                    o.JsonSerializerOptions.ReferenceHandler=ReferenceHandler.Preserve;
-                });
+            services.AddControllers().AddNewtonsoftJson(options => 
+                options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore);
 
             var connectionString = Configuration.GetConnectionString("LibraryDbConnection");
 
