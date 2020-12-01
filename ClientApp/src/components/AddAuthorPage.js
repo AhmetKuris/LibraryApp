@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import {Formik} from 'formik';
 import * as yup from 'yup';
 import Axios from 'axios';
@@ -8,23 +8,19 @@ import {Col, Row} from "react-bootstrap";
 
 
 const validationSchema = yup.object({
-    title: yup
+    firstName: yup
         .string('Enter your email')
         .required('Required'),
-    page: yup
-        .number('Enter your password')
-        .required('Required'),
-    author: yup
-        .string()
+    lastName: yup
+        .string('Enter your password')
         .required('Required'),
 });
 
-const AddBookPage = () =>
+const AddAuthorPage = () =>
 {
 
     function handleSubmit(values)
     {
-        alert(JSON.stringify(values))
 
         const Request = Axios.CancelToken.source();
 
@@ -47,9 +43,8 @@ const AddBookPage = () =>
     }
 
     const values = {
-        title: '',
-        page: '',
-        author: ''
+        firstName: '',
+        lastName: '',
     };
 
     return (
@@ -69,4 +64,4 @@ const AddBookPage = () =>
     );
 };
 
-export default AddBookPage;
+export default AddAuthorPage;

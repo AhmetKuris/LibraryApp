@@ -13,8 +13,8 @@ export default class App extends Component {
     return (
       <Layout>
         <Route exact path='/' component={Home} />
-        <Route path='/fetch-data' component={FetchData} />
-        <Route path='/save-book' component={AddBookPage} />
+        <Route path='/library' component={FetchData} />
+        <Route path='/add-book' component={AddBookPage} />
       </Layout>
     );
   }

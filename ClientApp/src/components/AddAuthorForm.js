@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import Form from 'react-bootstrap/Form'
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
@@ -60,13 +60,12 @@ function AddBookForm(props)
                         defaultValue="Choose...">
                         <option>Choose...</option>
                         <option>...</option>
-                        <option>HELLLO</option>
                     </Form.Control>
                     <Form.Control.Feedback type="invalid">{errors.author}</Form.Control.Feedback>
                 </Form.Group>
             </Form.Row >
             <Form.Row className="justify-content-center">
-            <Button type="submit">Submit form</Button>
+                <Button type="submit">Submit form</Button>
             </Form.Row>
         </Form>
 
